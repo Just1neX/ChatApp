@@ -30,6 +30,8 @@ public class Client {
 		System.out.println("");
 		buildWriter();
 
+		printComands();
+
 		// Nachichten Empfangen starten
 		new ClientReader(serverSocket, this).start();
 
@@ -38,10 +40,28 @@ public class Client {
 	}
 
 	/**
+	 * Printet alle Befehle die Benutzt werden können
+	 */
+	private void printComands() {
+		System.out.println("Verfügbare Befehle: \n");
+		System.out.println("/disconnect - Logout beim Server");
+		System.out.println("/all - Ausgabe aller Benutzer die Online sind");
+		// System.out.println("/offline - Ausgabe aller Nachichten die Offline Empfangen
+		// wurden");
+		System.out.println("<Message>-><Empfänger> - Nachicht an Benutzer senden");
+		System.out.println("");
+	}
+
+	/**
 	 * Starte den Chat | WRITER
 	 */
 	public void initialisiereChat() {
-		System.out.println("Start Chat");
+		// System.out.println("Start Chat");
+
+		// Abfrage nach offline Messages
+		System.out.println("Offline Nachichten:\n");
+		sendMessage("<G>");
+
 		while (true) {
 			String eingabe = s.nextLine();
 			aufschluesseln(eingabe);
@@ -58,9 +78,9 @@ public class Client {
 			if (eingabe.equals("/all")) {
 				sendMessage("<B>");
 			}
-			if (eingabe.equals("/offline")) {
-				sendMessage("<G>");
-			}
+			// if (eingabe.equals("/offline")) {
+			// sendMessage("<G>");
+			// }
 		} else {
 			// Nachicht senden
 			int pos = eingabe.indexOf("->");

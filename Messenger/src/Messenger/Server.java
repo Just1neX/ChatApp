@@ -162,7 +162,8 @@ public class Server {
 
 		} else {
 			System.out.println("Keine Offline Messages für: " + username);
-			// sende irgendwas
+			// Keine Offline Messages
+			client.sendMessage("<K>");
 		}
 	}
 

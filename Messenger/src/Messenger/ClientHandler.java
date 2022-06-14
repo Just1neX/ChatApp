@@ -34,13 +34,13 @@ public class ClientHandler extends Thread {
 
 		// Bestätigung Login
 		if (line.substring(0, 3).equals("<E>")) {
-			System.out.println("Einloggen am Server war erfolgreich!");
+			System.out.println("Einloggen am Server war erfolgreich!\n");
 			client.initialisiereChat();
 		}
 
 		// Ablehnung Login weil Nutzer schon vorhanden am Server
 		if (line.substring(0, 3).equals("<A>")) {
-			System.out.println("Einloggen am Server war nicht erfolgreich! \nNutzername ist schon vergeben!");
+			System.out.println("Einloggen am Server war nicht erfolgreich! \nNutzername ist schon vergeben!\n");
 			client.eingabeUsername();
 		}
 
@@ -59,6 +59,11 @@ public class ClientHandler extends Thread {
 		// Angefragter Nutzer ist nicht online
 		if ((line.substring(0, 3)).equals("<Z>")) {
 			System.out.println("Nutzer ist nicht online!\nNachicht wurde am Server gespeichert!");
+		}
+
+		// Keine Offline Messages
+		if ((line.substring(0, 3)).equals("<K>")) {
+			System.out.println("Sie haben keine Nachichten bekommen solange Sie offline waren.");
 		}
 
 	}
