@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Server {
 
@@ -19,7 +21,7 @@ public class Server {
 	 */
 	private ArrayList<String[]> offlineMessagesALT = new ArrayList<String[]>();
 
-	private HashMap<String, ArrayList<String[]>> offlineMessages = new HashMap<String, ArrayList<String[]>>();
+	private HashMap<String, Queue<String[]>> offlineMessages = new HashMap<String, Queue<String[]>>();
 
 	private int port;
 
@@ -140,24 +142,33 @@ public class Server {
 		return connections.get(username);
 	}
 
+	/**
+	 * Schickt alle Offline Messages an den entsprechenden Client in Richtiger
+	 * Reihenfolge
+	 * 
+	 * @param username - Nutzername des Client
+	 */
 	public void sendAllOfflineMessagesForUser(String username) {
 		ServerClientHandler client = connections.get(username);
 
 		if (offlineMessages.get(username) != null) {
-			ArrayList<String[]> messages = offlineMessages.get(username);
+			Queue<String[]> messages = offlineMessages.get(username);
 
-			for (int i = 0; i < messages.size(); i++) {
-				String[] m = messages.get(i);
+			String send = "<M>";
+
+			while (!messages.isEmpty()) {
+				String[] m = messages.remove();
 				String sendUsername = m[0];
 				String empfaengerUsername = m[1];
 				String message = m[2];
 
-				String send = "<N><sender:" + sendUsername + "><receiver:" + empfaengerUsername + "><message:" + message
-						+ ">";
-				client.sendMessage(send);
-
+				send = send + sendUsername + ": " + message + ";";
 			}
 
+			send = send.substring(0, send.length() - 1);
+			System.out.println(send);
+			// Über <N> Nachichten kommen durcheinander
+			client.sendMessage(send);
 			offlineMessages.remove(username);
 
 		} else {
@@ -178,11 +189,12 @@ public class Server {
 
 		if (offlineMessages.get(empfaengerUsername) == null) {
 			// Hinzufügen eines Neuen Users, welcher Offline ist
-			ArrayList<String[]> messages = new ArrayList<String[]>();
+			Queue<String[]> messages = new LinkedList<String[]>();
+
 			messages.add(save);
 			offlineMessages.put(empfaengerUsername, messages);
 		} else {
-			ArrayList<String[]> messages = offlineMessages.get(empfaengerUsername);
+			Queue<String[]> messages = offlineMessages.get(empfaengerUsername);
 			messages.add(save);
 		}
 	}

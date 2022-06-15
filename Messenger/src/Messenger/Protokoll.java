@@ -65,4 +65,15 @@ public class Protokoll {
 		}
 
 	}
+
+	/**
+	 * Gibt alle Offline nachichten in der Richtigen Reihenfolge zurück
+	 * 
+	 * @param line - Offline Messages
+	 * @return Array mit den Nachichten
+	 */
+	public static String[] getOfflineMessages(String line) {
+		String m = line.substring(3, line.length());
+		return m.split(";");
+	}
 }

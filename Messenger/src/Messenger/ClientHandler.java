@@ -66,5 +66,13 @@ public class ClientHandler extends Thread {
 			System.out.println("Sie haben keine Nachichten bekommen solange Sie offline waren.");
 		}
 
+		if ((line.substring(0, 3)).equals("<M>")) {
+			String[] messages = Protokoll.getOfflineMessages(line);
+
+			for (int i = 0; i < messages.length; i++) {
+				System.out.println(messages[i]);
+			}
+		}
+
 	}
 }
