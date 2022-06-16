@@ -1,0 +1,11 @@
+<A> - Abgelehnt bei Connection am Server senden zum Client
+<E> - Erfolgreich - bei Connection am Server senden zum CLient
+<O> - Ausloggen beim Server beides
+<L><login:Just1neX> - Login am Server senden zum server
+<N><sender:Just1neX><receiver:Tom><message:Hallo> - Nachicht Senden beides
+<B> - Anfordern aller User die Online sind senden zum Server 
+<B>Just1neX;Tom;Jonathan.... - Antwort alle Online senden zum Client
+<Z> - Zustellungsproblem, User ist nicht online senden zum Client
+<G> - Get Offline Messages senden zum server
+<K> - Keine Offline Messages senden zum Client
+<M>Justin: Wie geht es dir?;Justin: Hallo; senden zum CLient

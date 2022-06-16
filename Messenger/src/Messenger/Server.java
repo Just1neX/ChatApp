@@ -178,10 +178,14 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Fügt eine Nachicht zu den Offline Nachichten hinzu
+	 * 
+	 * @param sendUsername       - Absender der Nachicht
+	 * @param empfaengerUsername - Empfänger der Nachicht
+	 * @param message            - Inhalt der Nachicht
+	 */
 	public void addMessageToOfflineUsers(String sendUsername, String empfaengerUsername, String message) {
-		// System.out.println("Speichere Nachicht im Offlien Speicher!);
-
-		// senderUsername, empfaengerUsername, message
 		String[] save = new String[3];
 		save[0] = sendUsername;
 		save[1] = empfaengerUsername;

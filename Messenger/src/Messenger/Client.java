@@ -46,8 +46,6 @@ public class Client {
 		System.out.println("Verfügbare Befehle: \n");
 		System.out.println("/disconnect - Logout beim Server");
 		System.out.println("/all - Ausgabe aller Benutzer die Online sind");
-		// System.out.println("/offline - Ausgabe aller Nachichten die Offline Empfangen
-		// wurden");
 		System.out.println("<Message>-><Empfänger> - Nachicht an Benutzer senden");
 		System.out.println("");
 	}
@@ -56,8 +54,6 @@ public class Client {
 	 * Starte den Chat | WRITER
 	 */
 	public void initialisiereChat() {
-		// System.out.println("Start Chat");
-
 		// Abfrage nach offline Messages
 		System.out.println("Offline Nachichten:\n");
 		sendMessage("<G>");
@@ -68,6 +64,11 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Nimmt eingegebenen Befehl an und führt ihn
+	 * 
+	 * @param eingabe - Eingegebene Befehl
+	 */
 	private void aufschluesseln(String eingabe) {
 
 		if (eingabe.substring(0, 1).equals("/")) {
@@ -78,9 +79,6 @@ public class Client {
 			if (eingabe.equals("/all")) {
 				sendMessage("<B>");
 			}
-			// if (eingabe.equals("/offline")) {
-			// sendMessage("<G>");
-			// }
 		} else {
 			// Nachicht senden
 			int pos = eingabe.indexOf("->");
@@ -90,8 +88,6 @@ public class Client {
 			} else {
 				String message = eingabe.substring(0, pos);
 				String empfaenger = eingabe.substring(pos + 2, eingabe.length());
-
-				// System.out.println("Empfänger: " + empfaenger + " Message: " + message);
 
 				String messageOut = buildMessage(empfaenger, message);
 				sendMessage(messageOut);

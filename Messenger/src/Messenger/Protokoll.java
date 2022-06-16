@@ -43,6 +43,12 @@ public class Protokoll {
 		return line.substring(loginPosition + 7, line.length() - 1);
 	}
 
+	/**
+	 * Gibt alle Nutzer zurück die Online sind als String
+	 * 
+	 * @param line - Messages mit Usern die Online sind
+	 * @return Ausgabe der Nutzer
+	 */
 	public static String getUsernameFromAllOnlineMessage(String line) {
 
 		if (line.length() != 3) {

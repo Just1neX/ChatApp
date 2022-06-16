@@ -101,13 +101,13 @@ public class ServerClientHandler extends Thread {
 			}
 		}
 
-		// All Online
+		// All Online User
 		if (line.substring(0, 3).equals("<B>")) {
 			String message = server.getAllOnlineUsersMessage(username);
 			sendMessage(message);
 		}
 
-		// Get Offline Messages
+		// Get Offline Messages for User
 		if (line.substring(0, 3).equals("<G>")) {
 			server.sendAllOfflineMessagesForUser(username);
 		}
