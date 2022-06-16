@@ -29,6 +29,7 @@ public class ClientHandler extends Thread {
 		// Empfangene Nachicht verarbeiten
 		if (line.substring(0, 3).equals("<N>")) {
 			String[] daten = Protokoll.getDataFromMessage(line);
+			System.out.println("");
 			System.out.println(daten[0] + ": " + daten[2]);
 		}
 
@@ -73,6 +74,9 @@ public class ClientHandler extends Thread {
 			for (int i = 0; i < messages.length; i++) {
 				System.out.println(messages[i]);
 			}
+
+			System.out.println("");
+			System.out.println("Aktueller Chat:");
 		}
 
 	}
