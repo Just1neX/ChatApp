@@ -147,7 +147,14 @@ public class Client {
 		System.out.println("Bitte geben Sie ihren Benutzernamen ein:");
 
 		String vorlaeufigerUsername = s.nextLine();
-		loginWithUsernameToServer(vorlaeufigerUsername);
+
+		if (vorlaeufigerUsername.equals("/all") | vorlaeufigerUsername.equals("/disconnect")
+				| vorlaeufigerUsername.contains("->")) {
+			System.out.println("Ungültiger Username!");
+			eingabeUsername();
+		} else {
+			loginWithUsernameToServer(vorlaeufigerUsername);
+		}
 	}
 
 	/**
